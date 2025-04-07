@@ -16,6 +16,12 @@ html {
     scroll-behavior: smooth;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Header Styles */
 header {
     display: flex;
@@ -37,12 +43,12 @@ header {
 }
 
 /* Navigation Styles */
-nav {
+.desktop-nav {
     display: flex;
     gap: 2em;
 }
 
-nav a {
+.desktop-nav a {
     color: #333;
     text-decoration: none;
     font-weight: 500;
@@ -51,11 +57,11 @@ nav a {
     position: relative;
 }
 
-nav a:hover {
+.desktop-nav a:hover {
     color: #8b4513;
 }
 
-nav a:after {
+.desktop-nav a:after {
     content: '';
     position: absolute;
     width: 0;
@@ -66,8 +72,49 @@ nav a:after {
     transition: width 0.3s ease;
 }
 
-nav a:hover:after {
+.desktop-nav a:hover:after {
     width: 100%;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    color: #8b4513;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background-color: #f9f7f2;
+    padding: 1em;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    border-bottom: 1px solid #e6e1d6;
+}
+
+.mobile-nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.8em;
+    font-weight: 500;
+    border-bottom: 1px solid #e6e1d6;
+}
+
+.mobile-nav a:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav a:hover {
+    background-color: #f0e9d9;
+    color: #8b4513;
+}
+
+.mobile-nav.active {
+    display: flex;
 }
 
 /* Hero Section */
@@ -174,35 +221,35 @@ section p {
 }
 
 /* About Section */
-.about-container {
+.about-container, .architecture-container {
     display: flex;
     gap: 2em;
     align-items: center;
 }
 
-.about-image {
+.about-image, .architecture-image {
     flex: 1;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.about-image img {
+.about-image img, .architecture-image img {
     width: 100%;
     height: auto;
     display: block;
     transition: transform 0.5s ease;
 }
 
-.about-image:hover img {
+.about-image:hover img, .architecture-image:hover img {
     transform: scale(1.03);
 }
 
-.about-content {
+.about-content, .architecture-content {
     flex: 1;
 }
 
-.about-content p {
+.about-content p, .architecture-content p {
     text-align: justify;
 }
 
@@ -220,6 +267,7 @@ section p {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    min-height: 250px;
 }
 
 .funfact-card:hover {
@@ -256,12 +304,14 @@ footer {
     justify-content: center;
     gap: 2em;
     margin-bottom: 1em;
+    flex-wrap: wrap;
 }
 
 .footer-nav a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 0.5em;
 }
 
 .footer-nav a:hover {
@@ -269,20 +319,81 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .mehrangarh-heritage {
+        background-size: 40%, cover;
+    }
+    
+    .mehrangarh-heritage p {
+        max-width: 80%;
+    }
+}
+
 @media (max-width: 768px) {
-    .about-container {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .about-container, .architecture-container {
         flex-direction: column;
+    }
+    
+    .mehrangarh-heritage {
+        padding: 30px;
+        background-image: url('jodhpur-blue-city.jpg');
+        background-size: cover;
     }
     
     .mehrangarh-heritage p {
         max-width: 100%;
     }
     
-    .hero h1 {
-        font-size: 2.5em;
+    .heritage-buttons {
+        flex-direction: column;
+        gap: 1em;
     }
     
-    nav {
+    .hero h1 {
+        font-size: 2.5em;
+        max-width: 90%;
+    }
+    
+    section {
+        padding: 2em 5%;
+    }
+    
+    .funfacts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-nav {
         gap: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.8em;
+    }
+    
+    .hero h1 {
+        font-size: 2em;
+        padding: 0.3em;
+    }
+    
+    .mehrangarh-heritage h2 {
+        font-size: 2em;
+    }
+    
+    section h2 {
+        font-size: 1.8em;
+    }
+    
+    .funfact-card {
+        min-height: auto;
     }
 }
